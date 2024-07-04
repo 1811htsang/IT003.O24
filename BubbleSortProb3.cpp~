@@ -25,7 +25,7 @@ using namespace std; //Namespace
 typedef int* contro_int;
 typedef int& thamchieu_int;
 /*---------------------------------------------------------------------------------------------------------------*/
-//Minor workspkace 1: Identify template 
+//Minor workspace 1: Identify template 
 template <typename T> T* multiple_target_dynamic_allo(int num) {
     return new T[num];
 }

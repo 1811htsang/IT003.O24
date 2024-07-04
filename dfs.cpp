@@ -25,7 +25,7 @@ using namespace std; //Namespace
 typedef int* contro_int;
 typedef int& thamchieu_int;
 /*---------------------------------------------------------------------------------------------------------------*/
-//Minor workspkace 1: Identify template 
+//Minor workspace 1: Identify template 
 template <typename T> T* multiple_target_dynamic_allo(int num) {
     return new T[num];
 }
@@ -45,19 +45,19 @@ template <typename T> void erase_single_target_dynamic_allo(T* ptr) {
 
 /*---------------------------------------------------------------------------------------------------------------*/
 //Minor workspace 3: Identify lower functions
-void BubbleSort(long long int a[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-		for (int j = 0; j < n - i - 1; j++) {
-			if (a[j] >= a[j + 1]) 
-                swap(a[j], a[j + 1]);
-                
-                for (int k = 0; k < n; k++) cout << a[k] << " ";
-                cout << endl;
-		}
-	}
+int n, m; 
+vector<int> adj[100];
+bool visited[100];
+void dfs(int u) {
+    cout << u << " ";
+    visited[u] = true;
+    for (auto i: adj[u]) {
+        if (!visited[i]) dfs(i);
+    }
 }
 /*---------------------------------------------------------------------------------------------------------------*/
 //Minor workspace 4: Identify global variables
+
 
 /*---------------------------------------------------------------------------------------------------------------*/
 //Main workspace: Identify main function
@@ -67,10 +67,15 @@ int main() {
     cin.tie(0); cout.tie(0);
     /*---------------------------------------------------------------------------------------------------------------*/
     //Major workspace: Identify variables, Execute functions
-    int n; cin >> n;
-    long long int a[100];
-    for (int i = 0; i < n; i++) cin >> a[i];
-    BubbleSort(a, n);
+    cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        int x,y; cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x); // neu la co huong thi bo dong nay 
+    }
+    memset(visited, false, sizeof(visited));
+    dfs(1);
+
     /*---------------------------------------------------------------------------------------------------------------*/
     return 0;
 }

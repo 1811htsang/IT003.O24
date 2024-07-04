@@ -30,6 +30,9 @@
         "variant": "cpp",
         "algorithm": "cpp",
         "ranges": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "iostream": "cpp",
+        "random": "cpp",
+        "new": "cpp"
     }
 }

@@ -25,7 +25,7 @@ using namespace std; //Namespace
 typedef int* contro_int;
 typedef int& thamchieu_int;
 /*---------------------------------------------------------------------------------------------------------------*/
-//Minor workspkace 1: Identify template 
+//Minor workspace 1: Identify template 
 template <typename T> T* multiple_target_dynamic_allo(int num) {
     return new T[num];
 }
@@ -42,20 +42,61 @@ template <typename T> void erase_single_target_dynamic_allo(T* ptr) {
 }
 /*---------------------------------------------------------------------------------------------------------------*/
 //Minor workspace 2: Identify struct, class
+struct node {
+    int data;
+    node* next;
+};
+struct sslist {
+    node* head;
+    node* tail;
+};
+struct hashtable {
+    int m;
+    int n;
+    float load;
+    sslist *key_list;
+};
+int hash_func(hashtable hs, int x) {
+    return x % hs.m;
+}
+void createlist(sslist& ls) {
+    ls.head = ls.tail = NULL;
+}
+node* createnode(int x) {
+    node *p = new node;
+    if (p == NULL)
+        exit(1);
+    p->next = NULL;
+    p->data = x;
+    return p;
+}
+void createhashtable(hashtable &ht, int m) {
+    ht.key_list = new sslist[m];
+    for (int i = 0; i < m; i++)
+        createlist(ht.key_list[i]);
+    ht.m = m;
+    ht.n = 0;
+}
 
+void AddTail(sslist &ls, int x) {
+    node *p = createnode(x);
+    if (ls.head == NULL)
+        ls.head = ls.tail = p;
+    else {
+        ls.tail->next = p;
+        ls.tail = p;
+    }
+}
+int Insert(hashtable &hs, int x) {
+    if (hs.n + 1 <= hs.m * hs.load) {
+        int temp = hash_func(hs, temp);
+        AddTail(hs.key_list[temp], x);
+        hs.n++;
+    }
+}
 /*---------------------------------------------------------------------------------------------------------------*/
 //Minor workspace 3: Identify lower functions
-void BubbleSort(long long int a[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-		for (int j = 0; j < n - i - 1; j++) {
-			if (a[j] >= a[j + 1]) 
-                swap(a[j], a[j + 1]);
-                
-                for (int k = 0; k < n; k++) cout << a[k] << " ";
-                cout << endl;
-		}
-	}
-}
+
 /*---------------------------------------------------------------------------------------------------------------*/
 //Minor workspace 4: Identify global variables
 
@@ -67,10 +108,7 @@ int main() {
     cin.tie(0); cout.tie(0);
     /*---------------------------------------------------------------------------------------------------------------*/
     //Major workspace: Identify variables, Execute functions
-    int n; cin >> n;
-    long long int a[100];
-    for (int i = 0; i < n; i++) cin >> a[i];
-    BubbleSort(a, n);
+
     /*---------------------------------------------------------------------------------------------------------------*/
     return 0;
 }

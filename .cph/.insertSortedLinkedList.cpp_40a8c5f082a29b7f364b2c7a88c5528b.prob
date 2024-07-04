@@ -1,0 +1,1 @@
+{"name":"Local: insertSortedLinkedList","url":"d:\\Document\\Code\\IT003 Practice\\insertSortedLinkedList.cpp","tests":[{"id":1711989455382,"input":"2\n2\n2\n6","output":"226"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Document\\Code\\IT003 Practice\\insertSortedLinkedList.cpp","group":"local","local":true}

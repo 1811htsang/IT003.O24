@@ -25,7 +25,7 @@ using namespace std; //Namespace
 typedef int* contro_int;
 typedef int& thamchieu_int;
 /*---------------------------------------------------------------------------------------------------------------*/
-//Minor workspkace 1: Identify template 
+//Minor workspace 1: Identify template 
 template <typename T> T* multiple_target_dynamic_allo(int num) {
     return new T[num];
 }
@@ -45,16 +45,42 @@ template <typename T> void erase_single_target_dynamic_allo(T* ptr) {
 
 /*---------------------------------------------------------------------------------------------------------------*/
 //Minor workspace 3: Identify lower functions
-void BubbleSort(long long int a[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-		for (int j = 0; j < n - i - 1; j++) {
-			if (a[j] >= a[j + 1]) 
-                swap(a[j], a[j + 1]);
-                
-                for (int k = 0; k < n; k++) cout << a[k] << " ";
-                cout << endl;
-		}
-	}
+void mergeSort_array(int a[], int l, int m, int r) {
+    int left_len = m - l + 1;
+    int right_len = r - m;
+
+    std::vector<int> temp_left(left_len);
+    std::vector<int> temp_right(right_len);
+
+    for (int i = 0; i < left_len; i++) {
+        temp_left[i] = a[l + i];
+    }
+    for (int i = 0; i < right_len; i++) {
+        temp_right[i] = a[(m + i) + 1];
+    }
+    int i = 0, j = 0, k;
+    for (k = l; k <= r; k++) {
+        if ( (i < left_len) && (j >= right_len || temp_left[i] <= temp_right[j]) ) {
+            a[k] = temp_left[i];
+            i++;
+        } else {
+            a[k] = temp_right[j];
+            j++;
+        }
+    }
+}
+
+void mergeSort_recursion(int a[], int l, int r) {
+    if (l < r) {
+        int m = l + (r - l)/2;
+        mergeSort_recursion(a, l, m);
+        mergeSort_recursion(a, m + 1, r);
+        mergeSort_array(a,l,m,r);
+    }
+}
+
+void mergeSort(int a[], int n) {
+    mergeSort_recursion(a, 0, n - 1);
 }
 /*---------------------------------------------------------------------------------------------------------------*/
 //Minor workspace 4: Identify global variables
@@ -67,10 +93,17 @@ int main() {
     cin.tie(0); cout.tie(0);
     /*---------------------------------------------------------------------------------------------------------------*/
     //Major workspace: Identify variables, Execute functions
-    int n; cin >> n;
-    long long int a[100];
-    for (int i = 0; i < n; i++) cin >> a[i];
-    BubbleSort(a, n);
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    mergeSort(a, n);
+    for (int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+    cout << endl;
     /*---------------------------------------------------------------------------------------------------------------*/
     return 0;
 }

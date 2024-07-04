@@ -1,0 +1,1 @@
+{"name":"Local: merrgesortvisual","url":"d:\\Document\\Code\\IT003 Practice\\merrgesortvisual.cpp","tests":[{"id":1716380546509,"input":"8\n12 13 45 32 100 34 65 10","output":"10 12 13 32 34 45 65 100"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Document\\Code\\IT003 Practice\\merrgesortvisual.cpp","group":"local","local":true}
